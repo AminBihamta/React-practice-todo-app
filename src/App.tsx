@@ -5,9 +5,9 @@ import TaskList from "./components/TaskList";
 import Cookies from "js-cookie";
 
 function App() {
-  const [tasks, setTasks] = useState<String[]>([]);
+  const [tasks, setTasks] = useState<string[]>([]);
 
-  const saveTasksToCookies = (tasks: String[]) => {
+  const saveTasksToCookies = (tasks: string[]) => {
     Cookies.set("tasks", JSON.stringify(tasks), { expires: 7 }); // Save tasks as JSON, expires in 7 days
   };
 
@@ -26,10 +26,21 @@ function App() {
     });
   };
 
+  const deleteTask = (taskToDelete: string) => {
+    console.log("Deleting task:", taskToDelete);
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.filter((task) => task !== taskToDelete);
+      saveTasksToCookies(updatedTasks); // Update cookies after deleting a task
+      console.log("Task deleted");
+
+      return updatedTasks;
+    });
+  };
+
   return (
     <div>
       <NewTask addTask={addTask} />
-      <TaskList TaskListItems={tasks} />
+      <TaskList TaskListItems={tasks} deleteTask={deleteTask} />
     </div>
   );
 }

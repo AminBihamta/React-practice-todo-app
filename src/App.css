@@ -15,8 +15,9 @@
 body {
   flex-direction: column;
   align-items: center;
-}
 
+  justify-content: center;
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -86,7 +87,8 @@ button:focus-visible {
   flex-grow: 1;
 }
 
-.newTaskWrapper svg {
+.newTaskWrapper svg,
+.taskList svg {
   width: 15px;
   height: 15px;
   padding: 0px !important;
@@ -102,10 +104,45 @@ button:focus-visible {
   justify-content: left;
 }
 
+.taskList > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .taskList {
   display: flex;
   gap: 12px;
   flex-direction: column;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 1000px;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.iconWrapper:hover {
+  background-color: rgb(167, 0, 0);
+}
+
+.iconWrapper svg {
+  width: 15px;
+  height: 15px;
+  margin-top: -2px;
+}
+
+.iconWrapper:hover svg {
+  fill: white;
+}
+
+.iconWrapper:hover + .iconWrapper svg {
+  filter: invert(100%);
 }
 
 .divider div {
