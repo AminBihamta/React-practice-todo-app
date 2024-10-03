@@ -12,6 +12,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+h2 {
+  text-align: center;
+}
+
 body {
   flex-direction: column;
   align-items: center;
@@ -41,8 +45,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   border-radius: 0px 10px 10px 0px;
-  border: 1px solid #838383;
-  background-color: #3b3b3b;
+  background-color: #ffffff;
 }
 button:hover {
   border-color: #646cff;

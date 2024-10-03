@@ -4,6 +4,8 @@ import NewTask from "./components/NewTask";
 import TaskList from "./components/TaskList";
 import Cookies from "js-cookie";
 
+var emptyMessage = "";
+
 function App() {
   const [tasks, setTasks] = useState<string[]>([]);
 
@@ -24,21 +26,29 @@ function App() {
       saveTasksToCookies(updatedTasks); // Save the updated task list to cookies
       return updatedTasks; // Update state with new task list
     });
+
+    emptyMessage = "";
   };
 
   const deleteTask = (taskToDelete: string) => {
     setTasks((prevTasks) => {
       const updatedTasks = prevTasks.filter((task) => task !== taskToDelete);
       saveTasksToCookies(updatedTasks); // Update cookies after deleting a task
-
+      if (tasks.length == 0) {
+        emptyMessage = "You have no active tasks";
+      }
       return updatedTasks;
     });
   };
 
+  if (tasks.length == 0) {
+    emptyMessage = "You have no active tasks";
+  }
   return (
     <div>
       <NewTask addTask={addTask} />
       <TaskList TaskListItems={tasks} deleteTask={deleteTask} />
+      <h2>{emptyMessage}</h2>
     </div>
   );
 }
