@@ -27,11 +27,9 @@ function App() {
   };
 
   const deleteTask = (taskToDelete: string) => {
-    console.log("Deleting task:", taskToDelete);
     setTasks((prevTasks) => {
       const updatedTasks = prevTasks.filter((task) => task !== taskToDelete);
       saveTasksToCookies(updatedTasks); // Update cookies after deleting a task
-      console.log("Task deleted");
 
       return updatedTasks;
     });
